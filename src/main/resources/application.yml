@@ -1,0 +1,28 @@
+spring:
+  application:
+    name: boss-gateway
+server:
+  port: 8400
+
+
+zuul:
+#  sensitive-headers: logId,token,Content-Type,lang,Cookie,Set-Cookie,Authorization
+  routes:
+    fm-apps:
+      path: /gateway-app/**
+      url: https://qa-apps.sandload.cn
+    fm-boss:
+      path: /gateway-boss/**
+      url: https://qa-apps.sandload.cn
+
+#通过eureka的注册实例名去路由
+#    api-a:
+#      path: /api-a/**
+#      serviceId: service-A
+    #直接通过域名或者ip路由
+
+# eureka信息，若通过域名或者ip 直接路由则无需配置该信息
+#eureka:
+#  client:
+#    serviceUrl:
+#      defaultZone: http://localhost:1111/eureka/
